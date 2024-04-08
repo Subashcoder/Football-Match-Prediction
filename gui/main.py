@@ -30,7 +30,7 @@ label_home = tk.Label(root, text="Home Team:", font=("Arial", 14))
 label_home.grid(row=0, column=0, padx=20, pady=10, sticky="e")
 
 home_team_var = tk.StringVar()
-home_team_option = tk.OptionMenu(root, home_team_var, '', "Team A", "Team B", "Team C")  # Add more teams as needed
+home_team_option = tk.OptionMenu(root, home_team_var, '', "Arsenal", "Liverpool", "Chelsea")  # Add more teams as needed
 home_team_option.config(font=("Arial", 14))
 home_team_option.grid(row=0, column=1, padx=20, pady=10)
 
@@ -38,7 +38,7 @@ label_away = tk.Label(root, text="Away Team:", font=("Arial", 14))
 label_away.grid(row=1, column=0, padx=20, pady=10, sticky="e")
 
 away_team_var = tk.StringVar()
-away_team_option = tk.OptionMenu(root, away_team_var, '', "Team X", "Team Y", "Team Z")  # Add more teams as needed
+away_team_option = tk.OptionMenu(root, away_team_var, '', "Manchester United", "Wolverhampton", "Manchester City")  # Add more teams as needed
 away_team_option.config(font=("Arial", 14))
 away_team_option.grid(row=1, column=1, padx=20, pady=10)
 
