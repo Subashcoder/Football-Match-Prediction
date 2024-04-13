@@ -6,8 +6,8 @@ import numpy as np
 # Function to load and merge data
 def file_load():
     # File paths for CSV files
-    url = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\gws\gw28.csv'
-    url2 = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\player_idlist.csv'
+    url = r'C:/Users/User/OneDrive/Desktop/AI_Project/Football-Match-Prediction/Data/data/2023-24/gws/gw28.csv'
+    url2 = r'C:/Users/User/OneDrive/Desktop/AI_Project/Football-Match-Prediction/Data/data/2023-24/player_idlist.csv'
 
     # Read the first CSV file (gw28.csv) to get player names and teams
     df_player = pd.read_csv(url)
