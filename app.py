@@ -2,40 +2,11 @@ import pickle
 import streamlit as st
 import pandas as pd
 import numpy as np
+from input_collector import file_load
+from input_collector import get_fixtures_data
 
-# Function to load and merge data
-def file_load():
-    # File paths for CSV files
-    url = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\gws\gw28.csv'
-    url2 = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\player_idlist.csv'
-
-    # Read the first CSV file (gw28.csv) to get player names and teams
-    df_player = pd.read_csv(url)
-
-    # Select only the 'name' and 'team' columns and remove duplicates
-    df_player = df_player[['name', 'team']].drop_duplicates()
-
-    # Read the second CSV file (player_idlist.csv) to get player names and IDs
-    df_player_id = pd.read_csv(url2)
-
-    # Create a 'name' column by concatenating 'first_name' and 'second_name'
-    df_player_id['name'] = df_player_id['first_name'] + ' ' + df_player_id['second_name']
-
-    # Select only the 'name' and 'id' columns and remove duplicates
-    df_player_id = df_player_id[['name', 'id']].drop_duplicates()
-
-    # Now df_player contains player names and teams from gw28.csv
-    # And df_player_id contains player names and IDs from player_idlist.csv
-    # Ensure 'name' columns are consistent for merging (convert to lowercase for case-insensitive matching)
-    df_player['name'] = df_player['name'].str.lower()
-    df_player_id['name'] = df_player_id['name'].str.lower()
-
-    # Merge the two dataframes on 'name' to associate player IDs with player names and teams
-    merged_df = pd.merge(df_player, df_player_id, on='name', how='inner')
-    return merged_df
-
-# Load merged data
-merged_df = file_load()
+# Loading function to export player list file_load() return the merge_df which have player ID corresponding to team
+merged_df, _ = file_load()
 
 def player_list(user_input):
         # Filter 'merged_df' based on the specified team name
@@ -68,13 +39,6 @@ def predict(input_data):
     prediction = model.predict(input_data)
     return prediction
 
-# Streamlit app function
-import streamlit as st
-
-import streamlit as st
-
-import streamlit as st
-
 def main():
     # Custom CSS style with background image
     css = """
@@ -100,6 +64,11 @@ def main():
 
     # Streamlit app title with custom styling
     st.markdown('<p class="title">Football Match Prediction</p>', unsafe_allow_html=True)
+    
+    fixtures = st.text_input("Enter the next fixture number", "Enter here...")
+    if st.button("Show fixtures"):
+        fixture = get_fixtures_data(int(fixtures))
+        st.write(fixture)
 
     # Display form inputs and prediction logic
     home_team = st.text_input('Enter Home Team', 'Enter here...', key='home_team_input')
