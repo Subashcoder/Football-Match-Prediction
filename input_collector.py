@@ -139,4 +139,4 @@ def get_fixtures_data(event):
     return data
 
 def Home_team_stats():
-    df = 
+    pass
