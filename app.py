@@ -2,12 +2,13 @@ import pickle
 import streamlit as st
 import pandas as pd
 import numpy as np
+from PIL import Image
 
 # Function to load and merge data
 def file_load():
     # File paths for CSV files
-    url = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\gws\gw28.csv'
-    url2 = r'C:\Drive D\Downloads\Lambton College\Semester 2\AI\Project\Football_Match_Prediction\Football-Match-Prediction\Data\data\2023-24\player_idlist.csv'
+    url = r'C:\Users\Keshav Gautam\Desktop\AI_Project\Football-Match-Prediction\data\data\2023-24\gws\gw28.csv'
+    url2 = r'C:\Users\Keshav Gautam\Desktop\AI_Project\Football-Match-Prediction\data\data\2023-24\player_idlist.csv'
 
     # Read the first CSV file (gw28.csv) to get player names and teams
     df_player = pd.read_csv(url)
@@ -37,6 +38,9 @@ def file_load():
 # Load merged data
 merged_df = file_load()
 
+# Get a list of unique team names
+team_names = merged_df['team'].unique().tolist()
+
 def player_list(user_input):
         # Filter 'merged_df' based on the specified team name
         team_players = merged_df[merged_df['team'].str.lower() == user_input.lower()]
@@ -48,7 +52,7 @@ def player_list(user_input):
             players = pd.DataFrame({'Player Name': player_name})
             st.write(players)
         else:
-            st.write("No players found for team '{}'.".format(player_name))
+            st.write("No players found for team '{}'.".format(user_input))
 
 # Load the trained model using pickle
 model_path = 'SVM_Model.pkl'
@@ -69,41 +73,29 @@ def predict(input_data):
     return prediction
 
 # Streamlit app function
-import streamlit as st
-
-import streamlit as st
-
-import streamlit as st
-
 def main():
-    # Custom CSS style with background image
-    css = """
-    <style>
-    body {
-        background-image: url('fpl.png'); /* Replace with your image URL */
-        background-size: cover; /* Cover the entire background */
-        background-position: center; /* Center the background image */
-        font-family: 'Roboto', sans-serif; /* Custom font (change 'Roboto' to desired font) */
-        color: #333333; /* Dark text color */
-        padding: 20px; /* Add padding for content */
-    }
-    .title {
-        font-size: 36px;
-        font-weight: bold;
-        color: #ffffff; /* White text color for the title */
-        text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.5); /* Text shadow effect */
-        padding-top: 50px; /* Adjust padding for title positioning */
-    }
-    </style>
-    """
-    st.markdown(css, unsafe_allow_html=True)  # Apply custom CSS
+    # Streamlit app title
+    st.title('Football Match Prediction')
 
-    # Streamlit app title with custom styling
-    st.markdown('<p class="title">Football Match Prediction</p>', unsafe_allow_html=True)
+    # Load the background image
+    image = Image.open(r'C:\Users\Keshav Gautam\Desktop\AI_Project\ftl.png')
+
+    # Set the background image for the app
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{image_to_base64(image)}");
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Display form inputs and prediction logic
-    home_team = st.text_input('Enter Home Team', 'Enter here...', key='home_team_input')
-    away_team = st.text_input('Enter Away Team', 'Enter here...', key='away_team_input')
+    home_team = st.selectbox('Select Home Team', team_names)
+    away_team = st.selectbox('Select Away Team', team_names)
 
     # Show starting 11 buttons side by side
     if st.button('Show Starting 11'):
@@ -121,10 +113,15 @@ def main():
         result = predict(data_for_prediction())
         st.write('Prediction:', result)
 
+# Function to convert an image to base64 string
+def image_to_base64(image):
+    import base64
+    from io import BytesIO
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue())
+    return img_str.decode('utf-8')
+
 # Run the app
 if __name__ == '__main__':
     main()
-
-
-
-
