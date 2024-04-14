@@ -76,13 +76,8 @@ from PIL import Image
 # Function to load and merge data
 def file_load():
     # File paths for CSV files
-<<<<<<< HEAD
     url = r'C:\Users\Keshav Gautam\Desktop\AI_Project\Football-Match-Prediction\data\data\2023-24\gws\gw28.csv'
     url2 = r'C:\Users\Keshav Gautam\Desktop\AI_Project\Football-Match-Prediction\data\data\2023-24\player_idlist.csv'
-=======
-    url = r'C:/Users/User/OneDrive/Desktop/AI_Project/Football-Match-Prediction/Data/data/2023-24/gws/gw28.csv'
-    url2 = r'C:/Users/User/OneDrive/Desktop/AI_Project/Football-Match-Prediction/Data/data/2023-24/player_idlist.csv'
->>>>>>> a4b09439130b4b9c3d24a378afdb9b379a6a8da8
 
     # Read the first CSV file (gw28.csv) to get player names and teams
     df_player = pd.read_csv(url)
