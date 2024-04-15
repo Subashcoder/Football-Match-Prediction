@@ -137,7 +137,7 @@ def get_fixtures_data(event):
     data['team_a_name'] = data['team_a'].map(id_to_name_map)
     data['team_h_name'] = data['team_h'].map(id_to_name_map)
     
-    return data
+    return data[['kickoff_time', 'team_h_name', 'team_a_name']]
 
 
 

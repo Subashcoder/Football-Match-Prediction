@@ -81,7 +81,7 @@ def main():
     
     if fixtures:
         fixture = get_fixtures_data(int(fixtures))
-        st.write(fixture)
+        st.write(pd.DataFrame(fixture))
         
         
 
@@ -94,10 +94,10 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             st.write(f"Starting 11 for {home_team}")
-            st.write(player_list(home_team, merged_df))
+            st.write(pd.DataFrame(player_list(home_team, merged_df)))
         with col2:
             st.write(f"Starting 11 for {away_team}")
-            st.write(player_list(away_team, merged_df))
+            st.write(pd.DataFrame(player_list(away_team, merged_df)))
 
     # Prediction button
     if st.button('Predict'):
