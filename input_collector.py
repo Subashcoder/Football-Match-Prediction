@@ -10,22 +10,22 @@ def file_load():
     '''Return the player_ID and team name table'''
     # File paths for CSV files
     dir = os.getcwd()
-    url = r'Football-Match-Prediction/Data/data/2023-24/gws/gw28.csv'
-    url2 = r'Football-Match-Prediction\Data\data\2023-24\player_idlist.csv'
-    url3 = r'Football-Match-Prediction\Data\data\2023-24\teams.csv'
+    url = r'Data/data/2023-24/gws/gw28.csv'
+    url2 = r'Data\data\2023-24\player_idlist.csv'
+    url3 = r'Data\data\2023-24\teams.csv'
     
     url_ = os.path.join(dir,url)
     # Player Name and Player Team
-    df_player = pd.read_csv(url)
+    df_player = pd.read_csv('gw28.csv')
     df_player = df_player[['name', 'team']].drop_duplicates()
 
     # Player name and palyer ID
     url2_ = os.path.join(dir, url2)
-    df_player_id = pd.read_csv(url2)
+    df_player_id = pd.read_csv('player_idlist.csv')
     df_player_id['name'] = df_player_id['first_name'] + ' ' + df_player_id['second_name']
     
     url3_ = os.path.join(dir, url3)
-    df_team_id = pd.read_csv(url3)
+    df_team_id = pd.read_csv('teams.csv')
     df_team_id = df_team_id[['id', 'name']]
 
     # Select only the 'name' and 'id' columns and remove duplicates
