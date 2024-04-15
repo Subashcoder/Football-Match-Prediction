@@ -16,16 +16,16 @@ def file_load():
     
     url_ = os.path.join(dir,url)
     # Player Name and Player Team
-    df_player = pd.read_csv(url_)
+    df_player = pd.read_csv(url)
     df_player = df_player[['name', 'team']].drop_duplicates()
 
     # Player name and palyer ID
     url2_ = os.path.join(dir, url2)
-    df_player_id = pd.read_csv(url2_)
+    df_player_id = pd.read_csv(url2)
     df_player_id['name'] = df_player_id['first_name'] + ' ' + df_player_id['second_name']
     
     url3_ = os.path.join(dir, url3)
-    df_team_id = pd.read_csv(url3_)
+    df_team_id = pd.read_csv(url3)
     df_team_id = df_team_id[['id', 'name']]
 
     # Select only the 'name' and 'id' columns and remove duplicates
