@@ -10,9 +10,9 @@ def file_load():
     '''Return the player_ID and team name table'''
     # File paths for CSV files
     dir = os.getcwd()
-    url = r'Data\data\2023-24\gws\gw28.csv'
-    url2 = r'Data\data\2023-24\player_idlist.csv'
-    url3 = r'Data\data\2023-24\teams.csv'
+    url = r'Football-Match-Prediction/Data/data/2023-24/gws/gw28.csv'
+    url2 = r'Football-Match-Prediction\Data\data\2023-24\player_idlist.csv'
+    url3 = r'Football-Match-Prediction\Data\data\2023-24\teams.csv'
     
     url_ = os.path.join(dir,url)
     # Player Name and Player Team
