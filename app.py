@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import pickle
-from sklearn.preprocessing import StandardScaler
 from input_collector import file_load, get_fixtures_data, player_list, player_stat_calculator
 
 # Load merged data
