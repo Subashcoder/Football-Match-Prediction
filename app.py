@@ -58,7 +58,7 @@ def main():
     st.title('Football Match Prediction')
 
     # Streamlit app title with custom styling
-    st.markdown('<p class="title">Turn your passion for football into profits with our winning predictions.</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size: 24px; color: red;"><b>Turn your passion for football into profits with our winning predictions.</b></p>', unsafe_allow_html=True)
     
     fixtures = st.text_input("Enter the next fixture number")
     
